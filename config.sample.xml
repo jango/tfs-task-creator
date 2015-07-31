@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<settings>
+    <!-- TFS Collection URL -->
+    <tfs_server>https://server.com/tfs</tfs_server>
+    
+    <!-- Exact TFS Project name -->
+    <tfs_project>Project</tfs_project>
+    <tasks>
+        <!-- A single task, {{PARENT_ITEM_ID}} will be substituted with the ID of the
+        work item for which the task is being created. -->
+        <task assignee="Smith, John" history="Parent task comment" title="Parent task 1 for item {{WORK_ITEM_ID}}"/>
+        <!-- A task that has subtasks. --> 
+        <task assignee="Smith, John" title="Parent task 2 for item {{WORK_ITEM_ID}}" history="Start by providing an estimate for this item.">
+            <tasks>
+                <!-- {{PARENT_ITEM_ID}} will be substituted with the ID of the
+                immediate parent of this task. -->
+                <task assignee="" title="Subtask task for item {{PARENT_ITEM_ID}}" />
+            </tasks>
+        </task>
+    </tasks>
+
+    <!-- Each parent item tag contains a signle TFS ID of a work item for
+         which the above task list will be generated OR a single Iteration
+         Path in which tasks will be generated for all User Stories. -->
+    <parent_items>
+        <parent_item ID="142344"/>
+        <parent_item Iteration="Test iteration"/>
+    </parent_items>
+</settings>
