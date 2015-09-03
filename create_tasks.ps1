@@ -123,7 +123,7 @@ foreach ($parent_item in $ConfigFile.settings.parent_items.parent_item){
 
     if ($parent_item.HasAttribute("Iteration")){
         try {
-            foreach($item in $WIT.Query("SELECT * FROM WorkItems WHERE [System.WorkItemType] = 'User Story' AND [System.IterationPath] UNDER '" + $parent_item.Iteration + "'")){
+            foreach($item in $WIT.Query("SELECT * FROM WorkItems WHERE ([System.WorkItemType] = 'User Story' OR [System.WorkItemType] = 'Bug') AND [System.IterationPath] UNDER '" + $parent_item.Iteration + "'")){
                 $items += $item.Id
             }
         } catch {
